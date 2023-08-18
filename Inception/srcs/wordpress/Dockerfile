@@ -2,11 +2,9 @@ FROM debian:bullseye
 
 # Install packages
 
-RUN apt update && apt install -y php-fpm php-mysql curl
+RUN apt-get update && apt-get install -y php-fpm php-mysql curl default-mysql-client
 
 COPY ./tools/setup.sh /home/setup.sh
-
-COPY ./tools/wait-for-it.sh /home/wait-for-it.sh
 
 RUN chmod +x /home/setup.sh
 
