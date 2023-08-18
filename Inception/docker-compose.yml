@@ -1,0 +1,47 @@
+version: '3'
+
+networks:
+  inception42:
+
+volumes:
+  wordpress:
+    name: wordpress
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: 
+
+services:
+  mariadb:
+    container_name: mariadb
+    build: ./srcs/mariadb/.
+    networks:
+      - inception42
+    # volumes:
+      # - 
+    # env_file:
+    #   - .env
+
+  wordpress:
+    container_name: wordpress
+    build: ./srcs/wordpress/.
+    networks:
+      - inception42
+    depends_on:
+      - mariadb
+    # volumes:
+      # -
+    # env_file:
+    #   - .env
+
+    nginx:
+      container_name: nginx
+      build: ./srcs/nginx/.
+      networks:
+        - inception42
+      depends_on:
+        - wordpress
+      ports:
+        - "443:443"
+

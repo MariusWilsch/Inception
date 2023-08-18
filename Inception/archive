@@ -1,0 +1,16 @@
+FROM alpine:3.17.5
+
+# Install packages
+
+RUN apk update && apk upgrade && apk add --no-cache \
+	mariadb \
+	mariadb-client \
+	expect 
+
+# Copy files
+
+COPY ./tools/setup.sh /home/setup.sh
+
+RUN chmod +x /home/setup.sh
+
+ENTRYPOINT ["sh" , "/home/setup.sh" ]
