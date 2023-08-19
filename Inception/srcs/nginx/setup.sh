@@ -5,7 +5,7 @@ openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/ngi
 echo "
 server {
 	listen 443 ssl;
-	listen [::]:443 ssl;
+	listen [::]:443 ssl; # Do I need this?
 
 	server_name localhost mwilsch.42.fr;
 
