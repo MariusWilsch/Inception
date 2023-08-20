@@ -22,40 +22,38 @@ volumes:
 services:
   mariadb:
     container_name: mariadb
-    build: ./srcs/mariadb/.
+    build: ./requirements/mariadb/.
     networks:
       - inception42
     volumes:
       - mariadb:/var/lib/mysql/
-    # env_file:
-    #   - .env
+    env_file:
+      - .env
     restart: always
 
   wordpress:
     container_name: wordpress
-    build: ./srcs/wordpress/.
+    build: ./requirements/wordpress/.
     networks:
       - inception42
     depends_on:
       - mariadb
     volumes:
       - wordpress:/var/www/html/
-    # env_file:
-    #   - .env
+    env_file:
+      - .env
     restart: always
 
   nginx:
     container_name: nginx
-    build: ./srcs/nginx/.
+    build: ./requirements/nginx/.
     networks:
       - inception42
-    # depends_on:
-    #   - wordpress
+    depends_on:
+      - wordpress
     ports:
       - "443:443"
     volumes:
       - wordpress:/var/www/html/
-    # env_file:
-    #   - .env
     restart: always
 
