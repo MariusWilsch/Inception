@@ -1,5 +1,3 @@
-Sure thing! Here's a README.md format for the Docker analogy explanation:
-
 ---
 
 # Docker Explained: A Culinary Analogy 🍳
