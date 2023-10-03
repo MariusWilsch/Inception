@@ -28,7 +28,7 @@ wp core install --url=$DOMAIN/ --title=title --admin_user=$ADMIN_USERNAME --admi
 # create user
 wp user create $USER_USERNAME $USER_EMAIL --role=$USER_ROLE --user_pass=$USER_PASSWORD --allow-root
 else
-	echo "Wordpress already installted & configured, skipping ..."
+	echo "OK"
 fi
 
 # to connect php-fpm with nginx
